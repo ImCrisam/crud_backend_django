@@ -1,15 +1,20 @@
-FROM mcr.microsoft.com/devcontainers/python:1-3.11-bullseye
+FROM python:bookworm
 
-ENV PYTHONUNBUFFERED 1
+# Instalar dependencias del sistema necesarias para psycopg2 y otras libs
+RUN apt-get update \
+    && apt-get install -y \
+       xdg-utils \
+       gcc \
+       libpq-dev 
 
-# [Optional] If your requirements rarely change, uncomment this section to add them to the image.
-# COPY requirements.txt /tmp/pip-tmp/
-# RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-#    && rm -rf /tmp/pip-tmp
+# Carpeta de trabajo
+WORKDIR /workspaces
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# Copiar requirements.txt desde la raíz del proyecto
+COPY ../requirements.txt .
 
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
 
-
+# Mantener contenedor vivo (ajústalo después para correr tu app)
+CMD ["sleep", "infinity"]
