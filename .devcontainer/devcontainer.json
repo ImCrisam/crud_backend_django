@@ -20,7 +20,7 @@
 				"ms-azuretools.vscode-containers",
 				"eamodio.gitlens",
 				"omnilib.ufmt",
-				
+				"redhat.vscode-yaml",
 				"GitHub.copilot-chat",
 				"GitHub.copilot"
 			]
