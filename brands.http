@@ -45,8 +45,8 @@ Accept: application/json
 }
 
 ### =========================
-### Eliminar (borrado lógico con desactivar)
-POST {{baseUrl}}/brands/1/toggle-active/
+### Eliminar (DELETE físico) una marca
+DELETE {{baseUrl}}/brands/1/
 Accept: application/json
 
 ### =========================
