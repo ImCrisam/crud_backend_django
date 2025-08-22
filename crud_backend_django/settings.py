@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
+from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,14 +82,9 @@ WSGI_APPLICATION = 'crud_backend_django.wsgi.application'
 # If environment variables for Postgres are provided (e.g., via Docker),
 # use them to configure the default database.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("POSTGRES_DB", "cruddb"),
-        "USER": os.environ.get("POSTGRES_USER", "cruduser"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "crudpass"),
-        "HOST": os.environ.get("POSTGRES_HOST", "db"),  # "localhost" si no usas Docker
-        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
 # Fake client id required for write operations to the brands API.
 # Configure with environment variable FAKE_CLIENT_ID if needed.

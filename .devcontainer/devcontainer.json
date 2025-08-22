@@ -5,7 +5,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "crud_backend",
 	"workspaceFolder": "/workspaces",
-	"postStartCommand": "bash -lc 'python manage.py runserver'",
+	"postStartCommand": "pip install -r requirements.txt && bash -lc 'python manage.py runserver'",
 	"customizations": {
 		"vscode": {
 			"settings": {
