@@ -14,7 +14,8 @@ services:
       - key: SECRET_KEY
         generateValue: true
     plan: free
-
+    postDeployCommand: python manage.py migrate
+    
 databases:
   - name: crud-db
     plan: free
