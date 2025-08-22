@@ -1,0 +1,21 @@
+[
+  {
+    "model": "brands.brand",
+    "pk": 1,
+    "fields": {
+      "name": "Nike",
+      "owner": "Juan Perez",
+      "is_active": true
+    }
+  },
+  {
+    "model": "brands.brand",
+    "pk": 2,
+    "fields": {
+      "name": "Adidas",
+      "owner": "Maria Lopez",
+      "is_active": true
+    }
+  }
+
+]
