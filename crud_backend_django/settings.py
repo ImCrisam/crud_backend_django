@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-hg(ewuo+-@pz%9w3#zg3v2m0jj^3n!!@e=kyevo5b5gz8tjgdo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 
 INSTALLED_APPS = [
@@ -48,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # fake middleware that injects a fake user/header for testing
-    'brands.middleware.FakeAuthMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -78,6 +77,7 @@ WSGI_APPLICATION = 'crud_backend_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 # If environment variables for Postgres are provided (e.g., via Docker),
 # use them to configure the default database.
 DATABASES = {
@@ -90,6 +90,9 @@ DATABASES = {
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
+# Fake client id required for write operations to the brands API.
+# Configure with environment variable FAKE_CLIENT_ID if needed.
+FAKE_CLIENT_ID = os.environ.get('FAKE_CLIENT_ID', '42')
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 

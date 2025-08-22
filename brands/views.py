@@ -1,15 +1,18 @@
+from rest_framework import status
+from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import viewsets, permissions
 
 from .models import Brand
 from .serializers import BrandSerializer
-
+from .permissions import HeaderNumberPermission
 class BrandViewSet(viewsets.ModelViewSet):
+    """CRUD for Brand. Read is open; write operations require a numeric
+    X-CLIENT-ID header matching settings.FAKE_CLIENT_ID (default '42').
+    """
     queryset = Brand.objects.all().order_by('-created_at')
     serializer_class = BrandSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [HeaderNumberPermission]
 
     @action(detail=True, methods=['post'], url_path='toggle-active')
     def toggle_active(self, request, pk=None):

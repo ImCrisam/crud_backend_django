@@ -1,12 +1,22 @@
 @baseUrl = http://localhost:8000/api
+@id = 2
 
-### =========================
-### Obtener todas las marcas
+############################################################
+# 🔹 BRANDS API TESTS
+############################################################
+
+############################################################
+# 📌 Obtener todas las marcas
+############################################################
 GET {{baseUrl}}/brands/
 Accept: application/json
 
-### =========================
-### Crear una marca nueva
+
+############################################################
+# 📌 Crear una marca
+############################################################
+
+### ❌ Intento sin header X-Client-Id (esperado: 403 Forbidden)
 POST {{baseUrl}}/brands/
 Content-Type: application/json
 Accept: application/json
@@ -17,14 +27,32 @@ Accept: application/json
   "is_active": true
 }
 
-### =========================
-### Obtener una marca por ID (ej: id=1)
-GET {{baseUrl}}/brands/1/
+### ✅ Con header X-Client-Id correcto (esperado: 201 Created)
+POST {{baseUrl}}/brands/
+Content-Type: application/json
+Accept: application/json
+X-Client-Id: 42
+
+{
+  "name": "Nike",
+  "owner": "Juan Perez",
+  "is_active": true
+}
+
+
+############################################################
+# 📌 Obtener una marca por ID
+############################################################
+GET {{baseUrl}}/brands/{{id}}/
 Accept: application/json
 
-### =========================
-### Actualizar completamente una marca (PUT)
-PUT {{baseUrl}}/brands/1/
+
+############################################################
+# 📌 Actualizar completamente (PUT)
+############################################################
+
+### ❌ Sin header (esperado: 403 Forbidden)
+PUT {{baseUrl}}/brands/{{id}}/
 Content-Type: application/json
 Accept: application/json
 
@@ -34,9 +62,25 @@ Accept: application/json
   "is_active": true
 }
 
-### =========================
-### Actualizar parcialmente una marca (PATCH)
-PATCH {{baseUrl}}/brands/1/
+### ✅ Con header correcto (esperado: 200 OK)
+PUT {{baseUrl}}/brands/{{id}}/
+Content-Type: application/json
+Accept: application/json
+X-Client-Id: 42
+
+{
+  "name": "Nike Actualizado",
+  "owner": "Juan Perez",
+  "is_active": true
+}
+
+
+############################################################
+# 📌 Actualizar parcialmente (PATCH)
+############################################################
+
+### ❌ Sin header (esperado: 403 Forbidden)
+PATCH {{baseUrl}}/brands/{{id}}/
 Content-Type: application/json
 Accept: application/json
 
@@ -44,12 +88,40 @@ Accept: application/json
   "owner": "Maria Lopez"
 }
 
-### =========================
-### Eliminar (DELETE físico) una marca
-DELETE {{baseUrl}}/brands/1/
+### ✅ Con header correcto (esperado: 200 OK)
+PATCH {{baseUrl}}/brands/{{id}}/
+Content-Type: application/json
+Accept: application/json
+X-Client-Id: 42
+
+{
+  "owner": "Maria Lopez"
+}
+
+
+############################################################
+# 📌 Eliminar una marca (DELETE)
+############################################################
+
+### ❌ Sin header (esperado: 403 Forbidden)
+DELETE {{baseUrl}}/brands/{{id}}/
 Accept: application/json
 
-### =========================
-### Activar o desactivar explícitamente usando toggle-active
-POST {{baseUrl}}/brands/1/toggle-active/
+### ✅ Con header correcto (esperado: 204 No Content)
+DELETE {{baseUrl}}/brands/{{id}}/
 Accept: application/json
+X-Client-Id: 42
+
+
+############################################################
+# 📌 Activar o desactivar (toggle-active)
+############################################################
+
+### ❌ Sin header (esperado: 403 Forbidden)
+POST {{baseUrl}}/brands/{{id}}/toggle-active/
+Accept: application/json
+
+### ✅ Con header correcto (esperado: 200 OK)
+POST {{baseUrl}}/brands/{{id}}/toggle-active/
+Accept: application/json
+X-Client-Id: 42
