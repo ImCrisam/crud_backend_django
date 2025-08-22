@@ -18,6 +18,7 @@
 				"ms-python.vscode-pylance",
 				"humao.rest-client",
 				"ms-azuretools.vscode-containers",
+				"eamodio.gitlens",
 				"GitHub.copilot-chat",
 				"GitHub.copilot"
 			]

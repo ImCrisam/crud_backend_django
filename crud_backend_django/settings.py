@@ -78,20 +78,18 @@ WSGI_APPLICATION = 'crud_backend_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
 # If environment variables for Postgres are provided (e.g., via Docker),
 # use them to configure the default database.
-if os.environ.get('POSTGRES_DB'):
-    DATABASES = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'cruddb'),
-        'USER': os.environ.get('POSTGRES_USER', 'cruduser'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'crudpass'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'db'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB", "cruddb"),
+        "USER": os.environ.get("POSTGRES_USER", "cruduser"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "crudpass"),
+        "HOST": os.environ.get("POSTGRES_HOST", "db"),  # "localhost" si no usas Docker
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
-
-
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 

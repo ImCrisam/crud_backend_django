@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:8000/api
+
+### =========================
+### Obtener todas las marcas
+GET {{baseUrl}}/brands/
+Accept: application/json
+
+### =========================
+### Crear una marca nueva
+POST {{baseUrl}}/brands/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Nike",
+  "owner": "Juan Perez",
+  "is_active": true
+}
+
+### =========================
+### Obtener una marca por ID (ej: id=1)
+GET {{baseUrl}}/brands/1/
+Accept: application/json
+
+### =========================
+### Actualizar completamente una marca (PUT)
+PUT {{baseUrl}}/brands/1/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Nike Actualizado",
+  "owner": "Juan Perez",
+  "is_active": true
+}
+
+### =========================
+### Actualizar parcialmente una marca (PATCH)
+PATCH {{baseUrl}}/brands/1/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "owner": "Maria Lopez"
+}
+
+### =========================
+### Eliminar (borrado lógico con desactivar)
+POST {{baseUrl}}/brands/1/toggle-active/
+Accept: application/json
+
+### =========================
+### Activar o desactivar explícitamente usando toggle-active
+POST {{baseUrl}}/brands/1/toggle-active/
+Accept: application/json
