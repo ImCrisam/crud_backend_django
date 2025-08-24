@@ -2,7 +2,7 @@ services:
   - type: web
     runtime: python
     name: crud-backend
-    buildCommand: pip install -r requirements.txt && python manage.py migrate && 
+    buildCommand: pip install -r requirements.txt && python manage.py migrate
     startCommand: gunicorn crud_backend_django.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: DJANGO_ALLOWED_HOSTS
