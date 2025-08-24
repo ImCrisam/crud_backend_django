@@ -31,6 +31,7 @@ SECRET_KEY = 'django-insecure-hg(ewuo+-@pz%9w3#zg3v2m0jj^3n!!@e=kyevo5b5gz8tjgdo
 DEBUG = os.getenv("DEBUG", True)
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "*").split(",")
 
 INSTALLED_APPS = [
