@@ -1,5 +1,4 @@
-@baseUrl = https://crud-backend-nhc3.onrender.com/api
-# @baseUrl = http://localhost:8000/api
+@baseUrl = http://localhost:8000/api
 @id = 2
 
 ############################################################

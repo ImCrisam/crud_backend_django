@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hg(ewuo+-@pz%9w3#zg3v2m0jj^3n!!@e=kyevo5b5gz8tjgdo'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", 'django-insecure-hg(ewuo+-@pz%9w3#zg3v2m0jj^3n!!@e=kyevo5b5gz8tjgdo')
 
 
 INSTALLED_APPS = [
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'crud_backend_django.wsgi.application'
 # use them to configure the default database.
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
+        default=os.environ.get("DATABASE_URL", "postgres://cruduser:crudpass@localhost:5432/cruddb")
     )
 }
 # Fake client id required for write operations to the brands API.
@@ -133,6 +133,5 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 DEBUG = os.getenv("DEBUG", True)
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "*").split(",")
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "http://localhost").split(",")
+# CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost").split(",")
