@@ -133,5 +133,5 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 DEBUG = os.getenv("DEBUG", True)
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "http://localhost:8000").split(",")
+ALLOWED_HOST = os.getenv("DJANGO_ALLOWED_HOSTS", "http://localhost:8000").split(",")
 CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:8000").split(",")
