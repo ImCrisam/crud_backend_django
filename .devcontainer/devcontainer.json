@@ -5,12 +5,18 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "crud_backend",
 	"workspaceFolder": "/workspaces",
-	"postCreateCommand": "python manage.py makemigrations && python manage.py migrate  && python manage.py showmigrations && python manage.py seed_brands",
-	"postStartCommand": "pip install -r requirements.txt && bash -lc 'python manage.py runserver'",
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+	"postStartCommand": "pip install -r requirements.txt && python manage.py runserver",
 	"customizations": {
 		"vscode": {
 			"settings": {
-				"workbench.colorTheme": "Visual Studio Dark"
+				"workbench.colorTheme": "Visual Studio Dark",
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/bin/zsh"
+					}
+				}
 			},
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
@@ -33,8 +39,7 @@
 	// This can be used to network with other containers or the host.
 	"forwardPorts": [
 		5432,
-		8000,
-		6379
+		8000
 	]
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip install --user -r requirements.txt",
