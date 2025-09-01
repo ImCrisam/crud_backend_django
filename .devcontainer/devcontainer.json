@@ -5,7 +5,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "crud_backend",
 	"workspaceFolder": "/workspaces",
-	"postCreateCommand": "python manage.py makemigrations && python manage.py migrate  && python manage.py showmigrations",
+	"postCreateCommand": "python manage.py makemigrations && python manage.py migrate  && python manage.py showmigrations && python manage.py seed_brands",
 	"postStartCommand": "pip install -r requirements.txt && bash -lc 'python manage.py runserver'",
 	"customizations": {
 		"vscode": {
